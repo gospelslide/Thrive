@@ -11,5 +11,5 @@
 |
 */
 
-Route::get('/demo', 'MLController@demo');
+Route::get('/', 'MLController@demo');
 
