@@ -19,6 +19,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
-Route::get('/test', 'HomeController@test');
-Route::get('/activation', 'HomeController@activation');
+
+// Authentication routes
+Route::get('/activation', 'UserController@activation');
 Route::get('/confirm', 'UserController@confirmNewUser');
+Route::get('/sendOtp', 'UserController@sendOtp');
+Route::post('/verify', 'UserController@verify');
