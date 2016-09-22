@@ -19,3 +19,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+Route::get('/test', 'HomeController@test');
+Route::get('/activation', 'HomeController@activation');
+Route::get('/confirm', 'UserController@confirmNewUser');
