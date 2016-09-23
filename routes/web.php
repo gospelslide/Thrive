@@ -54,3 +54,7 @@ Route::post('/register_current', 'AccountController@register_current');
 Route::get('/add_credit', 'AccountController@add_credit');
 Route::post('/edit_credit', 'AccountController@edit_credit');
 Route::post('/register_credit', 'AccountController@register_credit');
+
+//Payment Routes
+Route::get('/add_payment', 'TransactionController@add_payment');
+Route::post('/update_payment', 'TransactionController@update');
