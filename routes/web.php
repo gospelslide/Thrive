@@ -34,6 +34,9 @@ Route::get('/insert_stocks', 'StocksController@insertStocks');
 Route::post('/add_stocks', 'StocksController@addStocks');
 Route::get('/stocks_current', 'StocksController@getCurrentPrice');
 
+//Currency routes 
+Route::get('/current_fx', 'CurrencyController@currentFxRates');
+
 //Transaction Routes
 Route::get('/history', 'TransactionController@transaction_history');
 Route::get('/queue', 'TransactionController@transaction_queue');
