@@ -27,7 +27,7 @@ Route::get('/sendOtp', 'UserController@sendOtp');
 Route::post('/verify', 'UserController@verify');
 
 //Stock routes
-Route::get('edit_stocks', function(){
+Route::get('/edit_stocks', function(){
 	return view('add_stocks');
 });
 Route::get('/insert_stocks', 'StocksController@insertStocks');
