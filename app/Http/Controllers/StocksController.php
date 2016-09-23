@@ -56,4 +56,28 @@ class StocksController extends Controller
     		return view('add_stocks')->withErrors($error);
     	}
     }
+
+    public function getCurrentPrice()
+    {
+    	$user = Auth::user();
+    	$id = $user['attributes']['id'];
+    	$stocks_held = DB::table('link_stock')
+    					->join('stock', 'link_stock.stock_id', '=', 'stock.id')
+    					->where('link_stock.user_id', $id)->get();
+    	$current_prices = [];
+    	foreach($stocks_held as $stock)
+    	{
+    		echo $stock->name;
+    	}
+    }
+
 }
+
+
+
+
+
+
+
+
+
