@@ -25,3 +25,11 @@ Route::get('/activation', 'UserController@activation');
 Route::get('/confirm', 'UserController@confirmNewUser');
 Route::get('/sendOtp', 'UserController@sendOtp');
 Route::post('/verify', 'UserController@verify');
+
+//Stock routes
+Route::get('edit_stocks', function(){
+	return view('add_stocks');
+});
+Route::get('/insert_stocks', 'StocksController@insertStocks');
+Route::post('/add_stocks', 'StocksController@addStocks');
+Route::get('/stocks_current', 'StocksController@getCurrentPrice');
