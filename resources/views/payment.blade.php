@@ -10,22 +10,6 @@
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/update_payment') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('id') ? ' has-error' : '' }}">
-                            <label for="id" class="col-md-4 control-label">Transaction Id</label>
-
-                            <div class="col-md-6">
-                                <input id="id" type="text" class="form-control" name="id" required autofocus>
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('customer_id') ? ' has-error' : '' }}">
-                            <label for="customer_id" class="col-md-4 control-label">Customer Id</label>
-
-                            <div class="col-md-6">
-                                <input id="customer_id" type="text" class="form-control" name="customer_id" required autofocus>
-                            </div>
-                        </div>
-
                         <div class="form-group{{ $errors->has('bank_id') ? ' has-error' : '' }}">
                             <label for="bank_name" class="col-md-4 control-label">Bank Name</label>
 
@@ -46,24 +30,10 @@
                             <label for="type" class="col-md-4 control-label">Account Type</label>
 
                             <div class="col-md-6">
-                                <input id="type" type="text" class="form-control" name="type" required autofocus>
-                            </div>
-                        </div>
-
-                         <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-                            <label for="description" class="col-md-4 control-label">Description</label>
-
-                            <div class="col-md-6">
-                                <input id="description" type="text" class="form-control" name="description" required autofocus>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
-                            <label for="auto_date" class="col-md-4 control-label">Address</label>
-
-                            <div class="col-md-6">
-                                <input id="address" type="text" class="form-control" name="address" required autofocus>
+                                <input id="type" type="radio" name="type" value="current" checked required>Current<br />
+                                <input id="type" type="radio" name="type" value="credit" required>Credit<br />
+                                <input id="type" type="radio" name="type" value="saving" required>Savings
+                    
                             </div>
                         </div>
 
@@ -76,7 +46,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('mer_name') ? ' has-error' : '' }}">
-                            <label for="mer_name" class="col-md-4 control-label">Merchant/Group Name</label>
+                            <label for="mer_name" class="col-md-4 control-label">Merchant Name</label>
 
                             <div class="col-md-6">
                                 <input id="mer_name" type="text" class="form-control" name="mer_name" required>
@@ -84,7 +54,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('mer_id') ? ' has-error' : '' }}">
-                            <label for="mer_id" class="col-md-4 control-label">Merchant/Group Id</label>
+                            <label for="mer_id" class="col-md-4 control-label">Merchant Account</label>
 
                             <div class="col-md-6">
                                 <input id="mer_id" type="text" class="form-control" name="mer_id" required>
@@ -97,7 +67,7 @@
                             <div class="col-md-6">
                                 <input id="mode" type="radio" name="mode" value="card" checked required>Card<br />
                                 <input id="mode" type="radio" name="mode" value="neft" required>NEFT<br />
-                                <input id="mode" type="radio" name="mode" value="cash" required>Cash
+                                <input id="mode" type="radio" name="mode" value="cash" required>Cheque
                             </div>
                         </div>
 

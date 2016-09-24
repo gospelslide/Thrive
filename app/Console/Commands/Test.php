@@ -45,7 +45,8 @@ class Test extends Command
         $time_obj = Carbon::now('Asia/Kolkata');
         $curr_time = $time_obj . '';
         $curr_time = substr($curr_time,0,16);
-        $transaction = DB::table('transaction_history')->orderBy('created_at')->first();
+        $transaction = DB::table('transaction_queue')->orderBy('created_at', 'desc')
+                        ->first();
         $next_notification_time = $transaction->created_at;
         $next_notification_time = substr($next_notification_time,0,16);
         if($curr_time == $next_notification_time)
@@ -54,21 +55,29 @@ class Test extends Command
             $token = TWILIO_TOKEN;
             $client = new Client($sid, $token);
 
-            $message = "$";
-
-            if($transaction->money_in == 0)
+            if($transaction->status == 0)
             {
-                $message .=  $transaction->money_out . " paid to " . 
-                $transaction->merchant_name . 
-                " on " . $transaction->created_at;
+                $message = "$";
+
+                if($transaction->money_in == 0)
+                {
+                    $message .=  $transaction->money_out . " paid to " . 
+                    $transaction->merchant_name . 
+                    " on " . $transaction->created_at;
+                }
+                else
+                {
+                    $message .= $transaction->money_in . " deposited in your account by " . 
+                                $transaction->merchant_name . 
+                                " on " . $transaction->created_at;
+                }
+                $message .= " - " . $transaction->bank_name;
             }
             else
             {
-                $message .= $transaction->money_in . " deposited in your account by " . 
-                            $transaction->merchant_name . 
-                            " on " . $transaction->created_at;
+                $message = "Autosweep alert-Transferred $" . $transaction->money_out . 
+                        " - " . $transaction->bank_name . "," . $transaction->country;  
             }
-            $message .= " - " . $transaction->bank_name;
 
             $client->messages->create(
                 "+919819861875",

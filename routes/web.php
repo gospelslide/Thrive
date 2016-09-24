@@ -38,7 +38,6 @@ Route::get('/stocks_current', 'StocksController@getCurrentPrice');
 Route::get('/current_fx', 'CurrencyController@currentFxRates');
 Route::get('/time', 'CurrencyController@time');
 
-
 //Transaction Routes
 Route::get('/history', 'TransactionController@transaction_history');
 Route::get('/queue', 'TransactionController@transaction_queue');
@@ -63,3 +62,7 @@ Route::post('/register_credit', 'AccountController@register_credit');
 //Payment Routes
 Route::get('/add_payment', 'TransactionController@add_payment');
 Route::post('/update_payment', 'TransactionController@update');
+
+//Notification Routes
+Route::get('/mark_as_read', 'NotificationController@markAsRead');
+Route::get('/notifications', 'NotificationsController@notifications');
