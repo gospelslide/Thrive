@@ -8,7 +8,7 @@ use App\Http\Requests;
 
 use Illuminate\Support\Facades\DB;
 
-class AccountController extends Controller
+class TransactionController extends Controller
 {
     public function transaction_history()
     {
