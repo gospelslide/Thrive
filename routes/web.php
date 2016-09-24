@@ -65,4 +65,4 @@ Route::post('/update_payment', 'TransactionController@update');
 
 //Notification Routes
 Route::get('/mark_as_read', 'NotificationController@markAsRead');
-Route::get('/notifications', 'NotificationsController@notifications');
+Route::get('/notifications', 'NotificationController@notifications');

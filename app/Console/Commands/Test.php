@@ -71,7 +71,7 @@ class Test extends Command
                                 $transaction->merchant_name . 
                                 " on " . $transaction->created_at;
                 }
-                $message .= " - " . $transaction->bank_name;
+                $message .= " - " . $transaction->bank_name . "," . $transaction->country;
             }
             else
             {
