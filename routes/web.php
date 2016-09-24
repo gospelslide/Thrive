@@ -36,6 +36,8 @@ Route::get('/stocks_current', 'StocksController@getCurrentPrice');
 
 //Currency routes 
 Route::get('/current_fx', 'CurrencyController@currentFxRates');
+Route::get('/time', 'CurrencyController@time');
+
 
 //Transaction Routes
 Route::get('/history', 'TransactionController@transaction_history');

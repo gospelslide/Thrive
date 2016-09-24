@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Auth;
 use DB;
+use Carbon\Carbon;
 
 class CurrencyController extends Controller
 {
@@ -42,5 +43,12 @@ class CurrencyController extends Controller
 			}
 		}
 		dd($fx_rates);
+    }
+
+    public function time()
+    {
+    	$time_obj = Carbon::now('Asia/Kolkata');
+    	$curr_time = $time_obj . '';
+    	echo substr($curr_time,0,16);
     }
 }
