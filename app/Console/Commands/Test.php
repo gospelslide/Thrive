@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use DB;
 use Twilio\Rest\Client;
 use Auth;
-include '/Users/Vishal/Thrive/app/Http/Controllers/config.php';
+include 'C:\laravel\Thrive\app\Http\Controllers\config.php';
 
 class Test extends Command
 {

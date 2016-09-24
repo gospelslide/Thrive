@@ -7,3 +7,4 @@ Homestead.yaml
 .env
 composer.lock
 /routes/web.php
+/app/Console/Commands/Test.php
