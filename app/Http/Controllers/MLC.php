@@ -9,17 +9,19 @@ use Phpml\SupportVectorMachine\Kernel;
 use Phpml\Regression\LeastSquares;
 use Phpml\Regression\SVR;
 use Input;
-class MLC extends Controller
+class MLController extends Controller
 {
     public function demo()
     {
         ini_set('max_execution_time','1500');
         $map=array('CHF'=>1,'HKD'=>2,'INR'=>3,'USD'=>5,'EURO'=>4,'GBP'=>6);
         
-        $country=Input::get();
-        $country1=$country['currency1'];
-        $country2=$country['currency2'];
-    
+//        $country=Input::get();
+  //      $country1=$country['currency1'];
+    //    $country2=$country['currency2'];
+        
+        $country1="6";
+        $country2="3";
 
         $name_1="";
         if($country1=='1')
@@ -49,7 +51,7 @@ class MLC extends Controller
 
         if($country1=='6')
         {
-            $data2=json_decode(file_get_contents("C:\\laravel\\Thrive\\resources\\".$name2),'true');
+            $data2=json_decode(file_get_contents("C:\\CodeShastra\\Thrive\\resources\\".$name2),'true');
             $samples=array();
             $labels=array();
             
@@ -58,7 +60,8 @@ class MLC extends Controller
             $currency->addNumberColumn('Pred');
             $currency->addNumberColumn('Real');
 
-            for($i=0;$i<50;$i++) {
+            for($i=1700;$i<2810;$i++) 
+            {
                 $temp=array();
                 array_push($temp,floatval($data2[$i]["termsOfTrade"]),floatval($data2[$i]["index"]),floatval($data2[$i]["interest_rates"]),floatval($data2[$i]["inflation"]),floatval($data2[$i]["currentBalance"]));
                 array_push($samples, $temp);
@@ -67,10 +70,11 @@ class MLC extends Controller
             $regression=new SVR(Kernel::LINEAR);
             $regression->train($samples,$labels);
 
-            for($i=0;$i<200;$i++)   {
+            for($i=1700;$i<2818;$i++)   
+            {
                 $pred2=$regression->predict([floatval($data2[$i]["termsOfTrade"]),floatval($data2[$i]["index"]),floatval($data2[$i]["interest_rates"]),floatval($data2[$i]["inflation"]),floatval($data2[$i]["currentBalance"])]);
                 $currency->addRow([$data2[$i]["index"],$pred2,$data2[$i]["currency"]]);        
-            }            
+            }
         }
         else if($country2=='6')
         {
@@ -83,9 +87,10 @@ class MLC extends Controller
             $currency->addNumberColumn('Pred');
             $currency->addNumberColumn('Real');
 
-            for($i=0;$i<50;$i++) {
+            for($i=0;$i<50;$i++) 
+            {
                 $temp=array();
-                array_push($temp,floatval($data2[$i]["termsOfTrade"]),floatval($data2[$i]["index"]),floatval($data2[$i]["interest_rates"]),floatval($data2[$i]["inflation"]),floatval($data2[$i]["currentBalance"]));
+                array_push($temp,floatval($data2[$i]["termsOfTrade"]),floatval($data2[$i]["index"]),floatval($data2[$i]["inflation"]),floatval($data2[$i]["currentBalance"]));
                 array_push($samples, $temp);
                 array_push($labels,1.0/floatval($data2[$i]["currency"]));    
               }
@@ -93,7 +98,7 @@ class MLC extends Controller
             $regression->train($samples,$labels);
 
             for($i=0;$i<200;$i++)   {
-                $pred2=$regression->predict([floatval($data2[$i]["termsOfTrade"]),floatval($data2[$i]["index"]),floatval($data2[$i]["interest_rates"]),floatval($data2[$i]["inflation"]),floatval($data2[$i]["currentBalance"])]);
+                $pred2=$regression->predict([floatval($data2[$i]["termsOfTrade"]),floatval($data2[$i]["index"]),floatval($data2[$i]["inflation"]),floatval($data2[$i]["currentBalance"])]);
                 $currency->addRow([$data2[$i]["index"],$pred2,$data2[$i]["currency"]]);        
             }            
         }
@@ -148,7 +153,7 @@ class MLC extends Controller
         }
         \Lava::AreaChart('Currency',$currency,['title'=>'Currency Change']);
 
-        return view('graph');
+        return view('welcome');
 
 
     }
