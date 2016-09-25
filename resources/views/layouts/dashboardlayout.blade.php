@@ -103,6 +103,7 @@
                 <ul class="nav child_menu">
                   <li><a href="stocks_current">Current</a></li>
                   <li><a href="stocks_predict">Predictions</a></li>
+                  <li><a href="/edit_stocks">Add stocks</a></li>
                 </ul>
               </li>
               <li><a><i class="/generate"></i>Generate Report <span class="fa fa-chevron-down"></span></a>

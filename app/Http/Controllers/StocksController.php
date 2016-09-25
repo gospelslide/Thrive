@@ -12,6 +12,12 @@ use Auth;
 class StocksController extends Controller
 {
 
+    public function sendList()
+    {
+        $stocks = DB::table('stock_codes')->where('id','>=',1565)->get();
+        return view('add_stock')->with('stocks',$stocks);
+    }
+
     public function insertStocks()
     {
     	$row = 1;
