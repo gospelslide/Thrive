@@ -374,7 +374,7 @@
 <script>
   $(document).ready(function() {
     $(".select2_single").select2({
-      placeholder: "Select a state",
+      placeholder: "Select a stock code",
       allowClear: true
     });
     $(".select2_group").select2({});
