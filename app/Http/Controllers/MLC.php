@@ -47,55 +47,104 @@ class MLC extends Controller
             $name_2="usaData";
         $name2=$name_2.".json";
 
-
-        $data1=json_decode(file_get_contents("C:\\laravel\\Thrive\\resources\\".$name1),'true');
-        $data2=json_decode(file_get_contents("C:\\laravel\\Thrive\\resources\\".$name2),'true');
-        $samples=array();
-        $labels=array();
-        for($i=0;$i<50;$i++)
+        if($country1=='6')
         {
-            $temp=array();
-            array_push($temp,floatval($data1[$i]["termsOfTrade"]),floatval($data1[$i]["index"]),floatval($data1[$i]["interest_rates"]),floatval($data1[$i]["inflation"]),floatval($data1[$i]["currentBalance"]));
-            array_push($samples, $temp);
-        
-            array_push($labels,$data1[$i]["currency"]);
-        }
-        $regression=new SVR(Kernel::LINEAR);
-        $regression->train($samples,$labels);
-
-        $currency=\Lava::DataTable();
-        $currency->addNumberColumn('Date');
-        $currency->addNumberColumn('Pred');
-        $currency->addNumberColumn('Real');
-
-
-        $samples=array();
-        $labels=array();
-        for($i=0;$i<50;$i++)
-        {
-            $temp=array();
-            array_push($temp,floatval($data2[$i]["termsOfTrade"]),floatval($data2[$i]["index"]),floatval($data2[$i]["interest_rates"]),floatval($data2[$i]["inflation"]),floatval($data2[$i]["currentBalance"]));
-            array_push($samples, $temp);
-        
-            array_push($labels,$data2[$i]["currency"]);
-        }
-        $regression1=new SVR(Kernel::LINEAR);
-        $regression1->train($samples,$labels);
-
-
-//        dd($samples)
-
-        for($i=0;$i<200;$i++)
-        {
-            $pred1=$regression->predict([floatval($data1[$i]["termsOfTrade"]),floatval($data1[$i]["index"]),floatval($data1[$i]["interest_rates"]),floatval($data1[$i]["inflation"]),floatval($data1[$i]["currentBalance"])]);
-            $pred2=$regression1->predict([floatval($data2[$i]["termsOfTrade"]),floatval($data2[$i]["index"]),floatval($data2[$i]["interest_rates"]),floatval($data2[$i]["inflation"]),floatval($data2[$i]["currentBalance"])]);
+            $data2=json_decode(file_get_contents("C:\\laravel\\Thrive\\resources\\".$name2),'true');
+            $samples=array();
+            $labels=array();
             
-            //dd($pred2);
-            $pred_val=$pred2*1.0/$pred1;
-            $real_val=floatval($data2[$i]["currency"])*1.0/floatval($data1[$i]["currency"]);
-//            dd($real_val);
-            $currency->addRow([$data1[$i]["index"],$pred_val,$real_val]);//$data1[$i]["currency"]]);        
+            $currency=\Lava::DataTable();
+            $currency->addNumberColumn('Date');
+            $currency->addNumberColumn('Pred');
+            $currency->addNumberColumn('Real');
 
+            for($i=0;$i<50;$i++) {
+                $temp=array();
+                array_push($temp,floatval($data2[$i]["termsOfTrade"]),floatval($data2[$i]["index"]),floatval($data2[$i]["interest_rates"]),floatval($data2[$i]["inflation"]),floatval($data2[$i]["currentBalance"]));
+                array_push($samples, $temp);
+                array_push($labels,$data2[$i]["currency"]);
+            }
+            $regression=new SVR(Kernel::LINEAR);
+            $regression->train($samples,$labels);
+
+            for($i=0;$i<200;$i++)   {
+                $pred2=$regression->predict([floatval($data2[$i]["termsOfTrade"]),floatval($data2[$i]["index"]),floatval($data2[$i]["interest_rates"]),floatval($data2[$i]["inflation"]),floatval($data2[$i]["currentBalance"])]);
+                $currency->addRow([$data2[$i]["index"],$pred2,$data2[$i]["currency"]]);        
+            }            
+        }
+        else if($country2=='6')
+        {
+            $data2=json_decode(file_get_contents("C:\\laravel\\Thrive\\resources\\".$name1),'true');
+            $samples=array();
+            $labels=array();
+            
+            $currency=\Lava::DataTable();
+            $currency->addNumberColumn('Date');
+            $currency->addNumberColumn('Pred');
+            $currency->addNumberColumn('Real');
+
+            for($i=0;$i<50;$i++) {
+                $temp=array();
+                array_push($temp,floatval($data2[$i]["termsOfTrade"]),floatval($data2[$i]["index"]),floatval($data2[$i]["interest_rates"]),floatval($data2[$i]["inflation"]),floatval($data2[$i]["currentBalance"]));
+                array_push($samples, $temp);
+                array_push($labels,1.0/floatval($data2[$i]["currency"]));    
+              }
+            $regression=new SVR(Kernel::LINEAR);
+            $regression->train($samples,$labels);
+
+            for($i=0;$i<200;$i++)   {
+                $pred2=$regression->predict([floatval($data2[$i]["termsOfTrade"]),floatval($data2[$i]["index"]),floatval($data2[$i]["interest_rates"]),floatval($data2[$i]["inflation"]),floatval($data2[$i]["currentBalance"])]);
+                $currency->addRow([$data2[$i]["index"],$pred2,$data2[$i]["currency"]]);        
+            }            
+        }
+        else
+        {
+            $data1=json_decode(file_get_contents("C:\\laravel\\Thrive\\resources\\".$name1),'true');
+            $data2=json_decode(file_get_contents("C:\\laravel\\Thrive\\resources\\".$name2),'true');
+            $samples=array();
+            $labels=array();
+            for($i=0;$i<50;$i++)
+            {
+                $temp=array();
+                array_push($temp,floatval($data1[$i]["termsOfTrade"]),floatval($data1[$i]["index"]),floatval($data1[$i]["interest_rates"]),floatval($data1[$i]["inflation"]),floatval($data1[$i]["currentBalance"]));
+                array_push($samples, $temp);
+            
+                array_push($labels,$data1[$i]["currency"]);
+            }
+            $regression=new SVR(Kernel::LINEAR);
+            $regression->train($samples,$labels);
+
+            $currency=\Lava::DataTable();
+            $currency->addNumberColumn('Date');
+            $currency->addNumberColumn('Pred');
+            $currency->addNumberColumn('Real');
+
+
+            $samples=array();
+            $labels=array();
+            for($i=0;$i<50;$i++)
+            {
+                $temp=array();
+                array_push($temp,floatval($data2[$i]["termsOfTrade"]),floatval($data2[$i]["index"]),floatval($data2[$i]["interest_rates"]),floatval($data2[$i]["inflation"]),floatval($data2[$i]["currentBalance"]));
+                array_push($samples, $temp);
+            
+                array_push($labels,$data2[$i]["currency"]);
+            }
+            $regression1=new SVR(Kernel::LINEAR);
+            $regression1->train($samples,$labels);
+
+
+            for($i=0;$i<200;$i++)
+            {
+                $pred1=$regression->predict([floatval($data1[$i]["termsOfTrade"]),floatval($data1[$i]["index"]),floatval($data1[$i]["interest_rates"]),floatval($data1[$i]["inflation"]),floatval($data1[$i]["currentBalance"])]);
+                $pred2=$regression1->predict([floatval($data2[$i]["termsOfTrade"]),floatval($data2[$i]["index"]),floatval($data2[$i]["interest_rates"]),floatval($data2[$i]["inflation"]),floatval($data2[$i]["currentBalance"])]);
+                
+                $pred_val=$pred2*1.0/$pred1;
+                $real_val=floatval($data2[$i]["currency"])*1.0/floatval($data1[$i]["currency"]);
+
+                $currency->addRow([$data1[$i]["index"],$pred_val,$real_val]);//$data1[$i]["currency"]]);        
+
+            }
         }
         \Lava::AreaChart('Currency',$currency,['title'=>'Currency Change']);
 
