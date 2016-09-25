@@ -63,7 +63,7 @@ class TransactionController extends Controller
                     DB::table('credit_account')->where([
                                 ['customer_id' ,'=', $user['attributes']['id']],
                                 ['bank_id' ,'=', $bank->id]
-                                ])->update(['current_balance' => $account->current_balance+$pay['out']]);
+                                ])->update(['current_balance' => $account->current_balance-$pay['out']]);
                 }
             }
         }
