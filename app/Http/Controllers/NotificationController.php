@@ -15,21 +15,18 @@ class NotificationController extends Controller
     	$id = Input::get('id');
     	$queued = DB::table('transaction_queue')->where('id', $id)->first();
     	DB::table('transaction_history')->insert([
-    		'id' => $queued->id,
     		'customer_id' => $queued->customer_id,
     		'bank_name' => $queued->bank_name,
     		'account_id' => $queued->account_id,
     		'account_type' => $queued->account_type,
-    		'description' => $queued->description,
-    		'address' => $queued->address,
     		'country' => $queued->country,
     		'merchant_name' => $queued->merchant_name,
-    		'merchant_id' => $queued->merchant_id,
     		'payment_mode' => $queued->payment_mode,
     		'money_in' => $queued->money_in,
     		'money_out' => $queued->money_out,
     		'created_at' => $queued->created_at,
-    		'updated_at' => $queued->updated_at]); 
+    		'updated_at' => $queued->updated_at,
+            'status' => '1']); 
 
         DB::table('transaction_queue')->where('id', $id)->delete();
 
@@ -63,10 +60,10 @@ class NotificationController extends Controller
             else
             {
                 $message = "Autosweep alert-Transferred $" . $notification->money_out . 
-                        " - " . $notification->bank_name . "," . $notification->country;  
+                        " at " . $notification->created_at . " - " . $notification->bank_name . "," . $notification->country;  
             }
             array_push($display, $message);
         }
-        dd($display);
+        return view('layouts.all_notifications')->with('display', $display);
     }
 }
