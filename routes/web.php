@@ -19,12 +19,20 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+Route::get('/form', function() {
+	return view('form');
+});
 
 // Authentication routes
 Route::get('/activation', 'UserController@activation');
 Route::get('/confirm', 'UserController@confirmNewUser');
 Route::get('/sendOtp', 'UserController@sendOtp');
 Route::post('/verify', 'UserController@verify');
+
+//Graph routes
+Route::get('/graph', 'MLC@demo');
+Route::get('/compute', 'MLC@compute');
+
 
 //Stock routes
 Route::get('/edit_stocks', function(){
@@ -64,3 +72,9 @@ Route::post('/update_payment', 'TransactionController@update');
 //Notification Routes
 Route::get('/mark_as_read', 'NotificationController@markAsRead');
 Route::get('/notifications', 'NotificationController@notifications');
+
+//Generate Report
+Route::get('/generate', 'NotificationController@generate_report');
+
+//Logout
+Route::get('/logout', 'UserController@logout');
