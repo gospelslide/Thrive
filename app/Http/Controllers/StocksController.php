@@ -81,6 +81,39 @@ class StocksController extends Controller
     	}
     }
 
+    public function predict()
+    {
+        $stock = DB::table('predictions_stock')->select()->get();
+        $avg = ($stock[0]->{'day1'}+$stock[0]->{'day2'}+$stock[0]->{'day3'}+$stock[0]->{'day4'}+$stock[0]->{'day5'}+$stock[0]->{'day6'}+$stock[0]->{'day7'})/7;
+        $max=0;
+        $min=9999999;
+        $day_max=1;
+        $day_min=1;
+        for($i=1;$i<=7;$i++)
+        {
+            if($stock[0]->{'day'.$i}>$max)
+            {
+                $max = $stock[0]->{'day'.$i};
+                $day_max = $i;
+            }
+
+            if($stock[0]->{'day'.$i}<$min)
+            {
+                $min = $stock[0]->{'day'.$i};
+                $day_min = $i;
+            }
+        }
+        $change = $avg-$stock[0]->{'price'};
+        if($change > 0)
+            $status = 1;
+        else if($change < 0)
+            $status = -1;
+        else 
+            $status = 0;
+
+        dd($avg .',' . $max.',' . $day_max.',' . $min.',' . $day_min.',' . $change.',' . $status);
+    }
+
 }
 
 
