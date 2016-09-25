@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.dashboardlayout')
 
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-8">
             <div class="panel panel-default">
                 <div class="panel-heading">Add Credit Card Account</div>
                 <div class="panel-body">
@@ -15,22 +15,6 @@
 
                             <div class="col-md-6">
                                 <input id="id" type="text" class="form-control" name="id" required autofocus>
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-                            <label for="description" class="col-md-4 control-label">Description</label>
-
-                            <div class="col-md-6">
-                                <input id="description" type="text" class="form-control" name="description" required autofocus>
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('customer_id') ? ' has-error' : '' }}">
-                            <label for="customer_id" class="col-md-4 control-label">Customer Id</label>
-
-                            <div class="col-md-6">
-                                <input id="customer_id" type="text" class="form-control" name="customer_id" required autofocus>
                             </div>
                         </div>
 
@@ -74,15 +58,6 @@
                                 <input id="balance" type="number" class="form-control" name="balance" required>
                             </div>
                         </div>
-
-
-                        <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
-                            <label for="type" class="col-md-4 control-label">Type</label>
-
-                            <div class="col-md-6">
-                                <input id="type" type="text" class="form-control" name="type" required>
-                            </div>
-                        </div>                        
 
                         <div class="form-group{{ $errors->has('date') ? ' has-error' : '' }}">
                             <label for="date" class="col-md-4 control-label">Expiry Date</label>

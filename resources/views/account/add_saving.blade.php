@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.dashboardlayout')
 
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-8">
             <div class="panel panel-default">
                 <div class="panel-heading">Add Savings Account</div>
                 <div class="panel-body">
@@ -18,35 +18,11 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-                            <label for="description" class="col-md-4 control-label">Description</label>
-
-                            <div class="col-md-6">
-                                <input id="description" type="text" class="form-control" name="description" required autofocus>
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('customer_id') ? ' has-error' : '' }}">
-                            <label for="customer_id" class="col-md-4 control-label">Customer Id</label>
-
-                            <div class="col-md-6">
-                                <input id="customer_id" type="text" class="form-control" name="customer_id" required autofocus>
-                            </div>
-                        </div>
-
                         <div class="form-group{{ $errors->has('bank_id') ? ' has-error' : '' }}">
                             <label for="bank_id" class="col-md-4 control-label">Bank Id</label>
 
                             <div class="col-md-6">
                                 <input id="bank_id" type="text" class="form-control" name="bank_id" required autofocus>
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('sort_code') ? ' has-error' : '' }}">
-                            <label for="sort_code" class="col-md-4 control-label">Sort Code</label>
-
-                            <div class="col-md-6">
-                                <input id="sort_code" type="text" class="form-control" name="sort_code" required autofocus>
                             </div>
                         </div>
 
