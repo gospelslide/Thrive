@@ -9,19 +9,16 @@ use Phpml\SupportVectorMachine\Kernel;
 use Phpml\Regression\LeastSquares;
 use Phpml\Regression\SVR;
 use Input;
-class MLController extends Controller
+class MLC extends Controller
 {
     public function demo()
     {
         ini_set('max_execution_time','1500');
         $map=array('CHF'=>1,'HKD'=>2,'INR'=>3,'USD'=>5,'EURO'=>4,'GBP'=>6);
         
-//        $country=Input::get();
-  //      $country1=$country['currency1'];
-    //    $country2=$country['currency2'];
-        
-        $country1="6";
-        $country2="3";
+       $country=Input::get();
+       $country1=$country['currency1'];
+       $country2=$country['currency2'];
 
         $name_1="";
         if($country1=='1')
@@ -51,7 +48,7 @@ class MLController extends Controller
 
         if($country1=='6')
         {
-            $data2=json_decode(file_get_contents("C:\\CodeShastra\\Thrive\\resources\\".$name2),'true');
+            $data2=json_decode(file_get_contents('/Users/Vishal/Thrive/resources/'.$name2),'true');
             $samples=array();
             $labels=array();
             
@@ -67,7 +64,7 @@ class MLController extends Controller
                 array_push($samples, $temp);
                 array_push($labels,$data2[$i]["currency"]);
             }
-            $regression=new SVR(Kernel::LINEAR);
+            $regression = new SVR(Kernel::RBF);
             $regression->train($samples,$labels);
 
             for($i=1700;$i<2818;$i++)   
@@ -154,8 +151,6 @@ class MLController extends Controller
         \Lava::AreaChart('Currency',$currency,['title'=>'Currency Change']);
 
         return view('welcome');
-
-
     }
 
     public function compute()

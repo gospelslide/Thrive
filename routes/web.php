@@ -35,9 +35,7 @@ Route::get('/compute', 'MLC@compute');
 
 
 //Stock routes
-Route::get('/edit_stocks', function(){
-	return view('add_stocks');
-});
+Route::get('/edit_stocks', 'StocksController@sendList');
 Route::get('/insert_stocks', 'StocksController@insertStocks');
 Route::post('/add_stocks', 'StocksController@addStocks');
 Route::get('/stocks_current', 'StocksController@getCurrentPrice');
@@ -75,6 +73,11 @@ Route::get('/notifications', 'NotificationController@notifications');
 
 //Generate Report
 Route::get('/generate', 'NotificationController@generate_report');
+
+//Graphs 
+Route::get('/graphex', function(){
+	return view('graphex');
+});
 
 //Logout
 Route::get('/logout', 'UserController@logout');

@@ -14,6 +14,7 @@ class NotificationController extends Controller
     {
     	$id = Input::get('id');
     	$queued = DB::table('transaction_queue')->where('id', $id)->first();
+        dd($queued);
     	DB::table('transaction_history')->insert([
     		'customer_id' => $queued->customer_id,
     		'bank_name' => $queued->bank_name,

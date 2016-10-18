@@ -13,36 +13,44 @@ class CurrencyController extends Controller
 {
     public function currentFxRates()
     {
-    	$query = "http://api.fixer.io/latest?base=";
-    	$user = Auth::user();
-    	$id = $user['attributes']['id'];
-    	$country = DB::table('users')->where('id', $id)->value('country');
-    	$base = DB::table('link_country_currency')->where('country_name', $country)
-    			->value('currency_code');
+    	$curl = curl_init();
 
-    	$query .= $base;
+        curl_setopt_array($curl, array(
+                  CURLOPT_URL => "http://api119105sandbox.gateway.akana.com/fxRates",
+                  CURLOPT_RETURNTRANSFER => true,
+                  CURLOPT_ENCODING => "",
+                  CURLOPT_MAXREDIRS => 10,
+                  CURLOPT_TIMEOUT => 30,
+                  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                  CURLOPT_CUSTOMREQUEST => "GET",
+                  CURLOPT_POSTFIELDS => "{\r\n    \"user\":      {\r\n      \"loginName\": \"sbMemgospelslide1\",\r\n      \"password\": \"sbMemgospelslide1#123\",\r\n      \"locale\": \"en_US\"\r\n     }\r\n}",
+                  CURLOPT_HTTPHEADER => array(
+                    "authorization: cobSession = 08062013_1:ab5f259eda11afd55f975db3b37598698e14579e68a69a63720da2401e2f6bd56015ecdf75848b826e3f6a11e6e47aeb1f09c2fc46980f87a597cfac43210920",
+                    "cache-control: no-cache",
+                    "postman-token: 67e2ae8b-8db7-c5d6-8991-de23a714c2a0"
+                  ),
+                ));
 
-    	$session = curl_init($query);  
-		curl_setopt($session, CURLOPT_RETURNTRANSFER,true);      
-		$json = curl_exec($session);
+                $response = curl_exec($curl);
+                $err = curl_error($curl);
+                //dd($response);
+                curl_close($curl);
 
-		$response = json_decode($json, true);
+                if ($err) {
+                  echo "cURL Error #:" . $err;
+                } else {
+                  //echo $response;
+                }
+                $response=json_decode($response);
+                //dd($response->{'rates'});
+                foreach($response->{'rates'} as $key=>$currency)
+            {
+ 
+                $fx_rates[$key]=$currency;
+            }
+        
 
-		$currencies = DB::table('link_account')
-						->join('bank', 'link_account.bank_id', '=', 'bank.id')
-						->where('user_id', $id)->get();
-		$fx_rates = array();
-		$i = 0;
-		foreach($currencies as $currency)
-		{
-			if($currency->currency_code != $base)
-			{
-				$fx_rates[$i]['code'] = $currency->currency_code;
-				$fx_rates[$i]['value'] = $response['rates'][$currency->currency_code];
-				$i++;
-			}
-		}
-		dd($fx_rates);
+        return view('current')->with('fx_rates',$fx_rates);
     }
 
     public function time()
