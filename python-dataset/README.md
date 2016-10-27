@@ -1,4 +1,4 @@
-#Randomly generated dataset for currency prediction
+# Randomly generated dataset for currency prediction
 
 1. Calculating features based on estinated data. Following features are being calculated.
 2. Refer this link for the features and their explanation.
@@ -29,3 +29,9 @@ Unit of measurement - percentage (can be negative also)
 - Current account balance is more than appreciation and so value goes nearer to great britain
 - debt increases, depreciation, value goes farther from great britain
 - terms of trade increases, appreciation, hence value nearer to britain
+
+### Following is the implementation results
+
+The system has been trained on half data and tested on other half.
+
+![5](https://raw.githubusercontent.com/gospelslide/Thrive/master/python-dataset/screenshots/Readme/5.png)
