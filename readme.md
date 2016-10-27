@@ -20,3 +20,11 @@ It is your mission to simplify and consolidate the daily banking needs of Corpor
 
 ## Our Solution
 
+![1](https://raw.githubusercontent.com/gospelslide/Thrive/master/python-dataset/screenshots/Readme/1.png)
+![2](https://raw.githubusercontent.com/gospelslide/Thrive/master/python-dataset/screenshots/Readme/2.png)
+![3](https://raw.githubusercontent.com/gospelslide/Thrive/master/python-dataset/screenshots/Readme/3.png)
+![4](https://raw.githubusercontent.com/gospelslide/Thrive/master/python-dataset/screenshots/Readme/4.png)
+![5](https://raw.githubusercontent.com/gospelslide/Thrive/master/python-dataset/screenshots/Readme/5.png)
+![6](https://raw.githubusercontent.com/gospelslide/Thrive/master/python-dataset/screenshots/Readme/6.png)
+![7](https://raw.githubusercontent.com/gospelslide/Thrive/master/python-dataset/screenshots/Readme/7.png)
+![8](https://raw.githubusercontent.com/gospelslide/Thrive/master/python-dataset/screenshots/Readme/8.png)
