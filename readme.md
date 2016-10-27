@@ -1,27 +1,22 @@
-# Laravel PHP Framework
+# Thive - A heaven for corporate treasurer
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+As a part of the Barclay's hackathon 2016, we selected problem statement 2 and tried to implement many features. Following is the preview.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+## Barclay's Hackathon Problem Statement 2
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+Corporate Treasurers are rebelling against the traditional methods adopted to manage risk. Rather than using historic balance and transactional data from their bankers, they are looking to drive innovation as a result of new European regulations around account aggregators and payments.
 
-## Official Documentation
+Large Corporate companies today typically have multiple bank accounts with different banks. Each of these accounts will be accessed via separate banking platforms; some are online, some are offline, and all require time and effort to access/analyse. Accounts are often in multiple currencies and across several geographies and require complex payment instruments to send and receive money. The new regulation will allow corporates to view all of their bank accounts on one platform, enabling treasurers to make sure their money is in the right place at the right time and in the right currency.
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+Corporate Treasurers produce a range of reports for internal and external audiences. These reports take a long time to compile and rely on data from multiple financial and non-financial sources, which can be out of date. The new open banking regulations will potentially allow for real-time data accurate to the second, giving Treasurers the tools to make informed decisions and making it far easier to manage their risks and balances in the short, medium and long term timeframes.
+It is your mission to simplify and consolidate the daily banking needs of Corporate Treasurers, by providing a single view experience and simplified payments process:
 
-## Contributing
+- How would you display all balance and transactional data/information, from multiple banks, multiple geographies and in multiple currencies, all in one place and in real-time?
+- How can financial and non-financial information be presented in a way that helps manage balances in a range of currencies and minimise risk?
+- What advanced data/information analytics and predictive analytics can be used to forecast future currency positions in real-time?
+- How could historic trend analysis and market/peer group data be used to help Treasurers make more informed decisions?
+- How can you simplify/automate the payment process, while giving Treasurers end-to-end control and visibility?
+- Can you conquer the Corporate Treasurers’ rebellion and create a consolidated solution that will meet their needs?
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+## Our Solution
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
