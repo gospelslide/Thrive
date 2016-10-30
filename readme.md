@@ -1,4 +1,4 @@
-# Thive - A heaven for corporate treasurer
+# Thrive - A heaven for corporate treasurer
 
 As a part of the Barclay's hackathon 2016, we selected problem statement 2 and tried to implement many features. Following is the preview.
 
